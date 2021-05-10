@@ -7,13 +7,17 @@ use Illuminate\Http\Request;
 
 class ShortcutController extends Controller
 {
-    
+
     public function showCategory($category)
     {
-        //dd($category);
+        //ddd($category);
 
-        $records = Shortcut::where('category', $category)->get();
+        //$records = Shortcut::where('category', $category)->get();
+        $records = Shortcut::whereHas('category', function($q) use ($category){
+            $q->where('name', $category);
+        })->get();
         //return ddd($records);
+
         if( count($records)===0){
             //throw new ModelNotFoundExeption();
             abort(404);
@@ -43,9 +47,10 @@ class ShortcutController extends Controller
      */
     public function create()
     {
-        return view('shortcuts.new', [ 
-            'shortcuts' => Shortcut::all()
-            ]);
+        // return view('shortcuts.new', [ 
+        //     'shortcuts' => Shortcut::all()
+        //     ]);
+        return view('shortcuts.new');
     }
 
     /**
@@ -56,7 +61,24 @@ class ShortcutController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //https://www.positronx.io/laravel-contact-form-example-tutorial/
+        // Form validation
+        $this->validate($request, [
+            'name' => 'required',
+            'url' => 'required|url',
+            'category_id' => 'required|numeric',
+            //'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            // 'subject'=>'required',
+            // 'message' => 'required'
+         ]);
+        
+        // Store data in database
+        //ddd($request)
+        Shortcut::create($request->all());
+        
+        // message
+        return back()->with('success', 'Shortcut added succesfully');
+        
     }
 
     /**
