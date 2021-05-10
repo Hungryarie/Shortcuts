@@ -39,7 +39,7 @@ Route::get('/shortcuts', [App\Http\Controllers\ShortcutController::class, 'index
 //         ]);
 // });
 Route::get('/shortcuts/new', [App\Http\Controllers\ShortcutController::class, 'create']);
-
+Route::post('/shortcuts/new', [App\Http\Controllers\ShortcutController::class, 'store'])->name('shortcut.store');
 
 Route::get('/shortcuts/{category}', [App\Http\Controllers\ShortcutController::class, 'showCategory']);
 
