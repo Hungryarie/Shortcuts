@@ -47,10 +47,10 @@
                             <!--<li class="{{ Request::path() === 'start' ? 'active' : '' }}"><a href="/shortcuts">Home</a></li>
                             <li class="{{ Request::path() === 'snippets' ? 'active' : '' }}"><a href="snippets">Snippets</a></li>-->
                             <li class="{{ Request::path() === 'shortcuts' ? 'active' : '' }}"><a href="/shortcuts">all shortcuts</a></li>
-                            <li class="{{ Request::path() === 'smartplugs' ? 'active' : '' }}"><a href="/shortcuts/smartplugs">- smartplugs</a></li>
+                            <li class="{{ Request::path() === 'smartplugs' ? 'active' : '' }}"><a href="/shortcuts/smartplug">- smartplugs</a></li>
                             <!--<li class="{{ Request::path() === 'smartplugs' ? 'active' : '' }}"><a href="shortcuts/SmartPlugs">shortcuts/smartplugs</a></li>-->
-                            <li class="{{ Request::path() === 'smartplugs' ? 'active' : '' }}"><a href="/shortcuts/Intern">- Internal</a></li>
-                            <li class="{{ Request::path() === 'smartplugs' ? 'active' : '' }}"><a href="/shortcuts/Extern">- External</a></li>
+                            <li class="{{ Request::path() === 'smartplugs' ? 'active' : '' }}"><a href="/shortcuts/internal">- Internal</a></li>
+                            <li class="{{ Request::path() === 'smartplugs' ? 'active' : '' }}"><a href="/shortcuts/external">- External</a></li>
                             <li class="{{ Request::path() === 'node-red' ? 'active' : '' }}"><a href="node-red">Node red</a></li>
 							<li class="{{ Request::path() === 'node-red' ? 'active' : '' }}"><a href="/shortcuts/new">Add shortcut</a></li>
 						</ul>
