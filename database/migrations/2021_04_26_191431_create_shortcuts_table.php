@@ -20,7 +20,7 @@ class CreateShortcutsTable extends Migration
             $table->string('url');
             $table->string('name');
             $table->text('remark');
-            $table->enum('category', ['SmartPlugs','Intern','Extern']);
+            //$table->enum('category', ['SmartPlugs','Intern','Extern']);
         });
     }
 
