@@ -24,7 +24,13 @@
     
 @endsection
 
-
+@section('message')
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
+    @endif
+@endsection
 
 @section('tiles')
 
@@ -45,6 +51,7 @@
                     <p>{{ $shortcut->url }}</p>
                 </div>
             </a>
+            <!--<a href="{{route('shortcut.edit', $shortcut->name)}}"><i class="fas fa-edit  fa-lg"></i></a>-->
         </article>
     @endforeach
 
