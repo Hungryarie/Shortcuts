@@ -38,3 +38,12 @@ Artisan::command('test {number}', function ($number) {
     // testing with arguments
     print ($number . PHP_EOL);
 })->purpose('testing the console');
+
+Artisan::command('routes', function () {
+    $routes = Route::getRoutes();
+    foreach ($routes as $route) {
+        /** @var \Illuminate\Routing\Route $route  */
+        echo 'routename:' . $route->getName() . PHP_EOL;
+        echo 'route uri:' .$route->uri. PHP_EOL . PHP_EOL;
+    }
+});
