@@ -35,9 +35,11 @@ class ShortcutController extends Controller
      */
     public function index()
     {
-        return view('shortcuts.index', [ 
-            'shortcuts' => Shortcut::all()
-            ]);
+        // return view('shortcuts.index', [ 
+        //     'shortcuts' => Shortcut::all()
+        //     ]);
+        $shortcuts = Shortcut::all();    
+        return view('shortcuts.index', compact('shortcuts'));
     }
 
     /**
@@ -47,10 +49,7 @@ class ShortcutController extends Controller
      */
     public function create()
     {
-        // return view('shortcuts.new', [ 
-        //     'shortcuts' => Shortcut::all()
-        //     ]);
-        return view('shortcuts.new');
+        return view('shortcuts.create');
     }
 
     /**
@@ -64,7 +63,7 @@ class ShortcutController extends Controller
         //https://www.positronx.io/laravel-contact-form-example-tutorial/
         // Form validation
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|unique:shortcuts,name',
             'url' => 'required|url',
             'category_id' => 'required|numeric',
             //'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
@@ -78,7 +77,7 @@ class ShortcutController extends Controller
         
         // message
         return back()->with('success', 'Shortcut added succesfully');
-        
+        //return redirect()->route('shortcuts.index')->with('success', 'Shortcut created successfully.');
     }
 
     /**
@@ -89,7 +88,20 @@ class ShortcutController extends Controller
      */
     public function show(Shortcut $shortcut)
     {
-        //
+        //return $shortcut;
+        return view('shortcuts.show', compact('shortcut'));
+    }
+    public function showit($name)
+    {
+        //ddd($name);
+        $record = Shortcut::where('name', $name)->first();
+
+        if (is_null($record)){
+            abort(404);   
+        }
+        return view('shortcuts.show', [
+                    'shortcuts' => $record,
+            ]);
     }
 
     /**
@@ -100,7 +112,12 @@ class ShortcutController extends Controller
      */
     public function edit(Shortcut $shortcut)
     {
-        //
+        //return 'hoi:'.$shortcut->name;
+        //return 'edit under construction';
+        return view('shortcuts.edit', compact('shortcut'));
+        // return view('shortcuts.edit', [
+        //     'shortcut' => $shortcut,
+        //     ]);
     }
 
     /**
@@ -112,7 +129,17 @@ class ShortcutController extends Controller
      */
     public function update(Request $request, Shortcut $shortcut)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:shortcuts,name',
+            'url' => 'required|url',
+            'category_id' => 'required|numeric'
+        ]);
+
+        
+        $shortcut->update($request->all());
+
+        return redirect()->route('shortcut.index')
+            ->with('success', 'Shortcut updated successfully');
     }
 
     /**
@@ -123,6 +150,12 @@ class ShortcutController extends Controller
      */
     public function destroy(Shortcut $shortcut)
     {
-        //
+        //return 'destroy under construction';
+        
+        $tempName = $shortcut->name;
+        $shortcut->delete();
+
+        return redirect()->route('shortcut.index')
+            ->with('success', 'shortcut '. $tempName . ' deleted successfully');
     }
 }
