@@ -52,7 +52,7 @@
                             <li class="{{ Request::path() === 'smartplugs' ? 'active' : '' }}"><a href="/shortcuts/internal">- Internal</a></li>
                             <li class="{{ Request::path() === 'smartplugs' ? 'active' : '' }}"><a href="/shortcuts/external">- External</a></li>
                             <li class="{{ Request::path() === 'node-red' ? 'active' : '' }}"><a href="node-red">Node red</a></li>
-							<li class="{{ Request::path() === 'node-red' ? 'active' : '' }}"><a href="/shortcuts/new">Add shortcut</a></li>
+							<li class="{{ Request::path() === 'node-red' ? 'active' : '' }}"><a href="/shortcut/create">Add shortcut</a></li>
 						</ul>
 					</nav>
 
@@ -61,7 +61,7 @@
 						<div class="inner">
 
 							@yield('banner')
-
+							@yield('message')
 							<section class="tiles">
                                 @yield('tiles')
                                 <!--
