@@ -18,7 +18,7 @@ class CreateShortcutsTable extends Migration
             $table->timestamps();
             $table->foreignId('category_id');
             $table->string('url');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->text('remark');
             //$table->enum('category', ['SmartPlugs','Intern','Extern']);
         });
