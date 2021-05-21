@@ -27,7 +27,7 @@ Route::get('/', function () {
 //         ]);
 // });
 //Route::get('/shortcuts', [App\Http\Controllers\ShortcutController::class, 'index']);
-Route::get('/shortcuts', [App\Http\Controllers\ShortcutController::class, 'index']);
+Route::get('/shortcuts', [App\Http\Controllers\ShortcutController::class, 'index'])->name('shortcuts.index');
 
 // Route::get('/shortcut/new', function() {
 //     //$shortcuts = App\Models\Shortcut::paginate(2);
@@ -38,9 +38,15 @@ Route::get('/shortcuts', [App\Http\Controllers\ShortcutController::class, 'index
 //         'shortcuts' => App\Models\Shortcut::all()
 //         ]);
 // });
-Route::get('/shortcuts/new', [App\Http\Controllers\ShortcutController::class, 'create']);
-Route::post('/shortcuts/new', [App\Http\Controllers\ShortcutController::class, 'store'])->name('shortcut.store');
 
 Route::get('/shortcuts/{category}', [App\Http\Controllers\ShortcutController::class, 'showCategory']);
 
+// Route::get('/shortcut/create', [App\Http\Controllers\ShortcutController::class, 'create'])->name('shortcut.create');
+// Route::post('/shortcut/create', [App\Http\Controllers\ShortcutController::class, 'store'])->name('shortcut.store');
 
+// Route::get('/shortcut/{name}', [App\Http\Controllers\ShortcutController::class, 'showit'])->name('shortcut.show');
+// Route::get('/shortcut/{name}/edit', [App\Http\Controllers\ShortcutController::class, 'edit'])->name('shortcut.edit');
+// Route::put('/shortcut/{name}', [App\Http\Controllers\ShortcutController::class, 'update'])->name('shortcut.update');
+// Route::delete('/shortcut/{name}', [App\Http\Controllers\ShortcutController::class, 'destroy'])->name('shortcut.destroy');
+
+Route::resource('shortcut', App\Http\Controllers\ShortcutController::class);
